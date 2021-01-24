@@ -1,0 +1,112 @@
+body {
+	font-size: 13px;
+}
+
+
+/*
+ * General
+ */
+
+a {
+	color: #7f92da;
+}
+
+.plain-link:hover {
+	text-decoration: none;
+	color: #5364a7;
+}
+
+
+h1 {
+	font-family: 'Noto Serif', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+}
+
+h2 {
+	font-family: 'Noto Serif', serif;
+	font-style: italic;
+  font-size: 1.2rem;
+}
+
+h4 {
+	font-size: 0.875rem;
+	font-weight: 500;
+	margin-bottom: 3px;
+}
+
+.subtitle {
+	color: #888;
+	margin-bottom: 20px;
+}
+
+
+/*
+ * Header
+ */
+
+#header {
+	background: #f7f7f7;
+	margin-bottom: 60px;
+}
+
+.portrait {
+	border-radius: 100%;
+	max-width: 240px;
+}
+
+.intro {
+	font-size: 0.8rem;
+	line-height: 1.7;
+}
+
+.intro-link {
+	display: inline-block;
+	margin-right: 40px;
+	margin-bottom: 5px;
+}
+
+
+/*
+ * Project tile
+ */
+
+#projects {
+	margin-bottom: 60px;
+}
+
+#projects h2 {
+	margin-bottom: 10px;
+}
+
+.project-tile {
+	background: #f7f7f7;
+	padding: 20px;
+}
+.project-tile-image {
+	border: 1px solid #eaeaea;
+}
+.project-tile-title {
+	color: #000;
+	font-weight: 500;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.project-tile-links {
+	margin-top: 8px;
+}
+
+
+/*
+ * Education & work experience
+ */
+
+#experience {
+	margin-bottom: 60px;
+}
+
+#education ul {
+	margin-top: 3px;
+	padding-left: 16px;
+}
+
