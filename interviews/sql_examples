@@ -1,0 +1,50 @@
+SELECT dt, COUNT(distinct t.uid_i) iphone, count(distinct t2.uid_i)
+FROM tbl1 t, tbl2 t2
+
+
+#DAY 1 retention
+SELECT
+	install_date,
+	COUNT(distinct uid_i) installs,
+	COUNT(distinct IF(ret1=1, uid_i, null)) ret1_uids
+FROM
+
+(SELECT 
+	uid_i, 
+	DATE(ts_t) dt, 
+	min(DATE(ts_t)) OVER (PARTITION BY uid_i) install_date,
+	IF (DATE_DIFF(DATE(ts_t), min(DATE(ts_t)) OVER (PARTITION BY uid_i), DAY )=1,1,0) ret1
+FROM tbl1) t 
+GROUP BY 1
+
+
+#Top 3 geo_s with most redeemers
+SELECT u.geo_s
+FROM tbl1 t
+LEFT JOIN usrs u on tbl1.uid_i = usrs.uid_i
+GROUP BY 1
+ORDER BY COUNT(*) DESC
+LIMIT 3
+
+# redeem/spend ratio per uid_i in last week
+SELECT
+	uid_i,
+	SUM(IF(counter_s = 'redeem',1,0))/NULLIF(SUM(IF(counter_s = 'spend',1,0)),0) ratio
+FROM tbl1 t
+WHERE DATE(ts_t) >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)
+GROUP BY 1
+
+
+# cumulative spend per data_item_n_s
+SELECT data_item_n_s, ts_t,item_q_i, SUM(item_q_i) OVER (PARTITION BY data_item_n_s ORDER BY ts_t ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) cumulative spend
+FROM tbl1
+ORDER BY 1,2
+
+
+#uids who purchased at least one purchase on multiple days
+#first purchase is = aomount
+
+#hightest employee
+SELECT *
+FROM tbl1 
+WHERE data_item_q_i = (SELECT MAX(data_item_q_i) FROM tbl1)
